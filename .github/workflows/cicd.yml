@@ -7,43 +7,51 @@ on:
     branches: [ main ]
 
 jobs:
-  test:
+  test-and-build:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
 
-      - name: Set up Python
-        uses: actions/setup-python@v5
-        with:
-          python-version: '3.12'
-
-      - name: Install dependencies
+      - name: Build Docker image with tests
         run: |
-          if [ -f requirements.txt ]; then
-            pip install -r requirements.txt
-            pip install pytest httpx
-          else
-            echo "No requirements.txt found, skipping"
-          fi
+          docker build -t api-agent-working:latest .
+          echo "✅ Build e testes passaram!"
 
-      - name: Run tests
-        run: |
-          if [ -d tests ]; then
-            pytest tests/ -v
-          else
-            echo "No tests found, skipping"
-          fi
-
-  deploy:
-    needs: test
+  deploy-hml:
+    needs: test-and-build
     runs-on: ubuntu-latest
     if: github.ref == 'refs/heads/main'
+    environment: homologacao
     steps:
-      - name: Deploy to VPS
+      - name: Simulate HML deploy
+        run: |
+          echo "🚀 Simulando deploy em HML..."
+          echo "Image: api-agent-working:latest"
+          echo "✅ HML deploy simulado com sucesso"
+
+  deploy-prd:
+    needs: deploy-hml
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/main'
+    environment: producao
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Deploy to PRD VPS
         uses: appleboy/ssh-action@v1.0.3
         with:
           host: ${{ secrets.VPS_HOST }}
           username: root
           key: ${{ secrets.VPS_SSH_KEY }}
           script: |
-            cd /root/api-agent-working && git pull origin main && echo "Deploy concluído"
+            cd /root/api-agent-working
+            git pull origin main
+            docker build -t api-agent-working:latest .
+            docker stop api-agent-working || true
+            docker rm api-agent-working || true
+            docker run -d \
+              --name api-agent-working \
+              --restart always \
+              -p 8080:8080 \
+              api-agent-working:latest
+            echo "✅ Deploy PRD concluído"

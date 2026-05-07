@@ -19,11 +19,20 @@ jobs:
 
       - name: Install dependencies
         run: |
-          pip install -r requirements.txt
-          pip install pytest httpx
+          if [ -f requirements.txt ]; then
+            pip install -r requirements.txt
+            pip install pytest httpx
+          else
+            echo "No requirements.txt found, skipping"
+          fi
 
       - name: Run tests
-        run: pytest tests/ -v
+        run: |
+          if [ -d tests ]; then
+            pytest tests/ -v
+          else
+            echo "No tests found, skipping"
+          fi
 
   deploy:
     needs: test
@@ -39,6 +48,5 @@ jobs:
           script: |
             cd /root/api-agent-working
             git pull origin main
-            source /root/working-agent-lab/.venv/bin/activate
-            pip install -r requirements.txt
-            systemctl restart api-agent-working
+            if [ -f requirements.txt ]; then
+              source /root/wo

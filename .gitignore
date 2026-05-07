@@ -1,0 +1,22 @@
+# Build
+bin/
+obj/
+out/
+publish/
+
+# .NET
+*.user
+*.suo
+.vs/
+*.swp
+
+# Docker
+.dockerignore
+
+# Environment
+.env
+appsettings.Development.json
+
+# OS
+.DS_Store
+Thumbs.db

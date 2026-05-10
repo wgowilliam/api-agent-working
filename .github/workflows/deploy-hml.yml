@@ -1,0 +1,33 @@
+name: Deploy HML
+
+on:
+  push:
+    branches: [develop]
+  workflow_dispatch:
+
+jobs:
+  deploy-hml:
+    runs-on: ubuntu-latest
+    environment: homologacao
+    timeout-minutes: 15
+    steps:
+      - name: Deploy via SSH
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: ${{ secrets.VPS_HOST }}
+          username: ${{ secrets.VPS_USER }}
+          key: ${{ secrets.VPS_SSH_KEY }}
+          script: |
+            set -e
+            REPO_DIR="/root/api-agent-working"
+            if [ ! -d "$REPO_DIR/.git" ]; then
+              git clone https://github.com/wgowilliam/api-agent-working.git "$REPO_DIR"
+            fi
+            cd "$REPO_DIR"
+            git fetch origin develop
+            git reset --hard origin/develop
+            docker build -t api-agent-working:hml .
+            docker tag api-agent-working:hml api-agent-working:latest
+            cd /root && docker compose up -d --no-deps --build api-agent || true
+            docker image prune -f
+            echo "[HML] Deploy concluído: $(date)"

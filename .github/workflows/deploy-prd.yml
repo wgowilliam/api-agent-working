@@ -1,0 +1,32 @@
+name: Deploy PRD
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  deploy-prd:
+    runs-on: ubuntu-latest
+    environment: producao
+    timeout-minutes: 15
+    steps:
+      - name: Deploy via SSH
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: ${{ secrets.VPS_HOST }}
+          username: ${{ secrets.VPS_USER }}
+          key: ${{ secrets.VPS_SSH_KEY }}
+          script: |
+            set -e
+            REPO_DIR="/root/api-agent-working"
+            if [ ! -d "$REPO_DIR/.git" ]; then
+              git clone https://github.com/wgowilliam/api-agent-working.git "$REPO_DIR"
+            fi
+            cd "$REPO_DIR"
+            git fetch origin main
+            git reset --hard origin/main
+            docker build -t api-agent-working:latest .
+            cd /root && docker compose up -d --no-deps api-agent
+            docker image prune -f
+            echo "[PRD] Deploy concluído: $(date)"

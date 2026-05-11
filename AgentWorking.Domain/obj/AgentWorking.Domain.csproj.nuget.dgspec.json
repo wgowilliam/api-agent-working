@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "/app/AgentWorking.Domain/AgentWorking.Domain.csproj": {}
+    "/root/api-agent-working/AgentWorking.Domain/AgentWorking.Domain.csproj": {}
   },
   "projects": {
-    "/app/AgentWorking.Domain/AgentWorking.Domain.csproj": {
+    "/root/api-agent-working/AgentWorking.Domain/AgentWorking.Domain.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/app/AgentWorking.Domain/AgentWorking.Domain.csproj",
+        "projectUniqueName": "/root/api-agent-working/AgentWorking.Domain/AgentWorking.Domain.csproj",
         "projectName": "AgentWorking.Domain",
-        "projectPath": "/app/AgentWorking.Domain/AgentWorking.Domain.csproj",
+        "projectPath": "/root/api-agent-working/AgentWorking.Domain/AgentWorking.Domain.csproj",
         "packagesPath": "/root/.nuget/packages/",
-        "outputPath": "/app/AgentWorking.Domain/obj/",
+        "outputPath": "/root/api-agent-working/AgentWorking.Domain/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "/root/.nuget/NuGet/NuGet.Config"
@@ -32,11 +32,6 @@
           "warnAsError": [
             "NU1605"
           ]
-        },
-        "restoreAuditProperties": {
-          "enableAudit": "true",
-          "auditLevel": "low",
-          "auditMode": "direct"
         }
       },
       "frameworks": {
@@ -58,7 +53,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/8.0.420/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/usr/lib/dotnet/sdk/8.0.126/PortableRuntimeIdentifierGraph.json"
         }
       }
     }

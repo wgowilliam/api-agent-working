@@ -1,8 +1,14 @@
 {
   "version": 2,
-  "dgSpecHash": "HuuvNDJAh2c=",
+  "dgSpecHash": "uhWFTfcKMnJpucHpRLPOd4mJwtFklp/14YDQSNRFCi/N8h6YfPIPx6Zj8NpgLT/bF7jre4iBcczhOY5UrnP3LQ==",
   "success": true,
-  "projectFilePath": "/app/AgentWorking.Application/AgentWorking.Application.csproj",
-  "expectedPackageFiles": [],
+  "projectFilePath": "/root/api-agent-working/AgentWorking.Application/AgentWorking.Application.csproj",
+  "expectedPackageFiles": [
+    "/root/.nuget/packages/fluentvalidation/11.11.0/fluentvalidation.11.11.0.nupkg.sha512",
+    "/root/.nuget/packages/fluentvalidation.dependencyinjectionextensions/11.11.0/fluentvalidation.dependencyinjectionextensions.11.11.0.nupkg.sha512",
+    "/root/.nuget/packages/mediatr/12.4.1/mediatr.12.4.1.nupkg.sha512",
+    "/root/.nuget/packages/mediatr.contracts/2.0.1/mediatr.contracts.2.0.1.nupkg.sha512",
+    "/root/.nuget/packages/microsoft.extensions.dependencyinjection.abstractions/8.0.2/microsoft.extensions.dependencyinjection.abstractions.8.0.2.nupkg.sha512"
+  ],
   "logs": []
 }

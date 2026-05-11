@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "RhORIcmH+dg=",
+  "dgSpecHash": "QY5Y2j47yVd7LuvnNSId2+gflXKsrHdcI/HsQ+XEXXnxlaI3dKqY/wFLx5+FLkzZC3SihDO5WDBQf+4KzkSdKQ==",
   "success": true,
-  "projectFilePath": "/app/AgentWorking.Domain/AgentWorking.Domain.csproj",
+  "projectFilePath": "/root/api-agent-working/AgentWorking.Domain/AgentWorking.Domain.csproj",
   "expectedPackageFiles": [],
   "logs": []
 }

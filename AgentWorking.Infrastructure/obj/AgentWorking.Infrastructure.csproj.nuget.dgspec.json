@@ -1,17 +1,92 @@
 {
   "format": 1,
   "restore": {
-    "/app/AgentWorking.Infrastructure/AgentWorking.Infrastructure.csproj": {}
+    "/root/api-agent-working/AgentWorking.Infrastructure/AgentWorking.Infrastructure.csproj": {}
   },
   "projects": {
-    "/app/AgentWorking.Infrastructure/AgentWorking.Infrastructure.csproj": {
+    "/root/api-agent-working/AgentWorking.Application/AgentWorking.Application.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/app/AgentWorking.Infrastructure/AgentWorking.Infrastructure.csproj",
-        "projectName": "AgentWorking.Infrastructure",
-        "projectPath": "/app/AgentWorking.Infrastructure/AgentWorking.Infrastructure.csproj",
+        "projectUniqueName": "/root/api-agent-working/AgentWorking.Application/AgentWorking.Application.csproj",
+        "projectName": "AgentWorking.Application",
+        "projectPath": "/root/api-agent-working/AgentWorking.Application/AgentWorking.Application.csproj",
         "packagesPath": "/root/.nuget/packages/",
-        "outputPath": "/app/AgentWorking.Infrastructure/obj/",
+        "outputPath": "/root/api-agent-working/AgentWorking.Application/obj/",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "/root/.nuget/NuGet/NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "net8.0"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net8.0": {
+            "targetAlias": "net8.0",
+            "projectReferences": {
+              "/root/api-agent-working/AgentWorking.Domain/AgentWorking.Domain.csproj": {
+                "projectPath": "/root/api-agent-working/AgentWorking.Domain/AgentWorking.Domain.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net8.0": {
+          "targetAlias": "net8.0",
+          "dependencies": {
+            "FluentValidation": {
+              "target": "Package",
+              "version": "[11.11.0, )"
+            },
+            "FluentValidation.DependencyInjectionExtensions": {
+              "target": "Package",
+              "version": "[11.11.0, )"
+            },
+            "MediatR": {
+              "target": "Package",
+              "version": "[12.4.1, )"
+            },
+            "Microsoft.Extensions.DependencyInjection.Abstractions": {
+              "target": "Package",
+              "version": "[8.0.2, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "/usr/lib/dotnet/sdk/8.0.126/PortableRuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "/root/api-agent-working/AgentWorking.Domain/AgentWorking.Domain.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "/root/api-agent-working/AgentWorking.Domain/AgentWorking.Domain.csproj",
+        "projectName": "AgentWorking.Domain",
+        "projectPath": "/root/api-agent-working/AgentWorking.Domain/AgentWorking.Domain.csproj",
+        "packagesPath": "/root/.nuget/packages/",
+        "outputPath": "/root/api-agent-working/AgentWorking.Domain/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "/root/.nuget/NuGet/NuGet.Config"
@@ -32,11 +107,6 @@
           "warnAsError": [
             "NU1605"
           ]
-        },
-        "restoreAuditProperties": {
-          "enableAudit": "true",
-          "auditLevel": "low",
-          "auditMode": "direct"
         }
       },
       "frameworks": {
@@ -58,7 +128,84 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/8.0.420/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/usr/lib/dotnet/sdk/8.0.126/PortableRuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "/root/api-agent-working/AgentWorking.Infrastructure/AgentWorking.Infrastructure.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "/root/api-agent-working/AgentWorking.Infrastructure/AgentWorking.Infrastructure.csproj",
+        "projectName": "AgentWorking.Infrastructure",
+        "projectPath": "/root/api-agent-working/AgentWorking.Infrastructure/AgentWorking.Infrastructure.csproj",
+        "packagesPath": "/root/.nuget/packages/",
+        "outputPath": "/root/api-agent-working/AgentWorking.Infrastructure/obj/",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "/root/.nuget/NuGet/NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "net8.0"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net8.0": {
+            "targetAlias": "net8.0",
+            "projectReferences": {
+              "/root/api-agent-working/AgentWorking.Application/AgentWorking.Application.csproj": {
+                "projectPath": "/root/api-agent-working/AgentWorking.Application/AgentWorking.Application.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net8.0": {
+          "targetAlias": "net8.0",
+          "dependencies": {
+            "Microsoft.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[8.0.15, )"
+            },
+            "Microsoft.EntityFrameworkCore.Design": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[8.0.15, )"
+            },
+            "Microsoft.Extensions.Hosting.Abstractions": {
+              "target": "Package",
+              "version": "[8.0.1, )"
+            },
+            "Npgsql.EntityFrameworkCore.PostgreSQL": {
+              "target": "Package",
+              "version": "[8.0.11, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "/usr/lib/dotnet/sdk/8.0.126/PortableRuntimeIdentifierGraph.json"
         }
       }
     }

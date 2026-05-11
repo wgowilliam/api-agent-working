@@ -1,4 +1,6 @@
+using AgentWorking.Application.Interfaces;
 using AgentWorking.Infrastructure.Persistence;
+using AgentWorking.Infrastructure.Persistence.Repositories;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -15,6 +17,16 @@ public static class DependencyInjection
             options.UseNpgsql(
                 configuration.GetConnectionString("DefaultConnection"),
                 b => b.MigrationsAssembly(typeof(AppDbContext).Assembly.FullName)));
+
+        services.AddScoped<IUnitOfWork, UnitOfWork>();
+        services.AddScoped<ICentroRepository, CentroRepository>();
+        services.AddScoped<IProdutoRepository, ProdutoRepository>();
+        services.AddScoped<ILoteRepository, LoteRepository>();
+        services.AddScoped<ICompraRepository, CompraRepository>();
+        services.AddScoped<IPedidoRepository, PedidoRepository>();
+        services.AddScoped<IVendaRepository, VendaRepository>();
+        services.AddScoped<IEntregaRepository, EntregaRepository>();
+        services.AddScoped<INotificacaoRepository, NotificacaoRepository>();
 
         return services;
     }

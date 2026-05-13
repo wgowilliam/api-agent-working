@@ -28,6 +28,7 @@ public static class DependencyInjection
         services.AddScoped<IVendaRepository, VendaRepository>();
         services.AddScoped<IEntregaRepository, EntregaRepository>();
         services.AddScoped<INotificacaoRepository, NotificacaoRepository>();
+        services.AddScoped<IUsuarioRepository, UsuarioRepository>();
         services.AddHostedService<PedidoExpirationJob>();
 
         return services;

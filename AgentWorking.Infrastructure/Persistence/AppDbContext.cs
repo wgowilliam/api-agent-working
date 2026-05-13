@@ -15,6 +15,7 @@ public class AppDbContext(DbContextOptions<AppDbContext> options) : DbContext(op
     public DbSet<Venda> Vendas => Set<Venda>();
     public DbSet<EntregaStatus> Entregas => Set<EntregaStatus>();
     public DbSet<Notificacao> Notificacoes => Set<Notificacao>();
+    public DbSet<User> Users => Set<User>();
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {

@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "k5C5Z5QNgMVj+YJTCyPn+BzmSW2eTBrGC95IvHxo+QD8IZXPakoVBsUFRz8Wf0CK/L7fHdUvPu1KKEH501XS1A==",
+  "dgSpecHash": "ZPXskaYJEUJOPOia6Q+3GoffnyArZD4WInanyWK0WHt5nzb8DSKvT+VaLt1iqf/7NOSWjltbUFB9GA2KHXHrpw==",
   "success": true,
   "projectFilePath": "/root/api-agent-working/AgentWorking.Tests/AgentWorking.Tests.csproj",
   "expectedPackageFiles": [

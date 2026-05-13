@@ -5406,6 +5406,7 @@
       "AgentWorking.Application >= 1.0.0",
       "AgentWorking.Domain >= 1.0.0",
       "AgentWorking.Infrastructure >= 1.0.0",
+      "Microsoft.EntityFrameworkCore >= 8.0.15",
       "Microsoft.NET.Test.Sdk >= 17.8.0",
       "Moq >= 4.20.72",
       "coverlet.collector >= 6.0.0",
@@ -5460,6 +5461,10 @@
       "net8.0": {
         "targetAlias": "net8.0",
         "dependencies": {
+          "Microsoft.EntityFrameworkCore": {
+            "target": "Package",
+            "version": "[8.0.15, )"
+          },
           "Microsoft.NET.Test.Sdk": {
             "target": "Package",
             "version": "[17.8.0, )"

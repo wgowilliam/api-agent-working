@@ -22,9 +22,5 @@ public class PedidoConfiguration : IEntityTypeConfiguration<Pedido>
             .HasValue<Pedido>(TipoPedido.Padrao)
             .HasValue<PedidoPersonalizado>(TipoPedido.Personalizado);
         builder.Property(p => p.Tipo).HasConversion<string>();
-
-        builder.Property<string?>("Especie").HasMaxLength(200);
-        builder.Property<decimal?>("QuantidadeTotal").HasPrecision(10, 2);
-        builder.Property<string?>("Observacoes").HasMaxLength(1000);
     }
 }

@@ -1,4 +1,5 @@
 using AgentWorking.Application.Features.Pedidos.Commands.ExpirePedidos;
+using AgentWorking.Application.Interfaces;
 using MediatR;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -19,6 +20,9 @@ public class PedidoExpirationJob(
                 using var scope = scopeFactory.CreateScope();
                 var mediator = scope.ServiceProvider.GetRequiredService<IMediator>();
                 await mediator.Send(new ExpirePedidosCommand(), stoppingToken);
+
+                var tokenRepo = scope.ServiceProvider.GetRequiredService<ITokenRevogadoRepository>();
+                await tokenRepo.DeleteExpiredAsync(stoppingToken);
             }
             catch (Exception ex)
             {

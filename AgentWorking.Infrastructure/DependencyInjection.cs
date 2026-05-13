@@ -2,6 +2,7 @@ using AgentWorking.Application.Interfaces;
 using AgentWorking.Infrastructure.BackgroundJobs;
 using AgentWorking.Infrastructure.Persistence;
 using AgentWorking.Infrastructure.Persistence.Repositories;
+using AgentWorking.Infrastructure.Services;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -29,6 +30,9 @@ public static class DependencyInjection
         services.AddScoped<IEntregaRepository, EntregaRepository>();
         services.AddScoped<INotificacaoRepository, NotificacaoRepository>();
         services.AddScoped<IUsuarioRepository, UsuarioRepository>();
+        services.AddSingleton<IPasswordHasher, PasswordHasher>();
+        services.AddScoped<ITokenService, JwtTokenService>();
+        services.AddScoped<ITokenRevogadoRepository, TokenRevogadoRepository>();
         services.AddHostedService<PedidoExpirationJob>();
 
         return services;

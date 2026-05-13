@@ -4,5 +4,5 @@ using MediatR;
 
 namespace AgentWorking.Application.Features.Usuarios.Commands.CadastrarUsuario;
 
-public record CadastrarUsuarioCommand(string Nome, string Email, TipoUsuario Tipo)
+public record CadastrarUsuarioCommand(string Nome, string Email, string Senha, TipoUsuario Tipo)
     : IRequest<UserDto>;

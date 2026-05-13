@@ -36,6 +36,15 @@ public class ExceptionHandlerMiddleware(RequestDelegate next, ILogger<ExceptionH
                 Type = "not_found", Title = ex.Message, Status = 404
             }));
         }
+        catch (UnauthorizedAccessException)
+        {
+            context.Response.StatusCode = 401;
+            context.Response.ContentType = "application/problem+json";
+            await context.Response.WriteAsync(JsonSerializer.Serialize(new ProblemDetails
+            {
+                Type = "unauthorized", Title = "Credenciais inválidas.", Status = 401
+            }));
+        }
         catch (InvalidOperationException ex)
         {
             context.Response.StatusCode = 409;

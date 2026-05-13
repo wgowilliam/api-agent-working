@@ -2,12 +2,14 @@ using AgentWorking.Application.Features.Entregas.Commands.PatchEntregaStatus;
 using AgentWorking.Application.Features.Entregas.Queries.GetEntrega;
 using AgentWorking.Domain.Enums;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace AgentWorking.API.Controllers;
 
 [ApiController]
 [Route("api/[controller]")]
+[Authorize]
 public class EntregasController(IMediator mediator) : ControllerBase
 {
     [HttpGet("{pedidoId:guid}")]

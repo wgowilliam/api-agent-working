@@ -16,6 +16,7 @@ public class AppDbContext(DbContextOptions<AppDbContext> options) : DbContext(op
     public DbSet<EntregaStatus> Entregas => Set<EntregaStatus>();
     public DbSet<Notificacao> Notificacoes => Set<Notificacao>();
     public DbSet<User> Users => Set<User>();
+    public DbSet<TokenRevogado> TokensRevogados => Set<TokenRevogado>();
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {

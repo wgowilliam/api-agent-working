@@ -2,12 +2,14 @@ using AgentWorking.Application.Features.Pagamentos.Commands.ProcessBoleto;
 using AgentWorking.Application.Features.Pagamentos.Commands.ProcessCartao;
 using AgentWorking.Application.Features.Pagamentos.Commands.ProcessPix;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace AgentWorking.API.Controllers;
 
 [ApiController]
 [Route("api/[controller]")]
+[Authorize]
 public class PagamentosController(IMediator mediator) : ControllerBase
 {
     [HttpPost("pix")]

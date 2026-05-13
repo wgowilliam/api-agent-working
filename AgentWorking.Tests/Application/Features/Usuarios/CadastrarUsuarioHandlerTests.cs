@@ -10,9 +10,15 @@ public class CadastrarUsuarioHandlerTests
 {
     private readonly Mock<IUsuarioRepository> _repoMock = new();
     private readonly Mock<IUnitOfWork> _uowMock = new();
+    private readonly Mock<IPasswordHasher> _hasherMock = new();
+
+    public CadastrarUsuarioHandlerTests()
+    {
+        _hasherMock.Setup(h => h.Hash(It.IsAny<string>())).Returns("hashed");
+    }
 
     private CadastrarUsuarioHandler BuildHandler() =>
-        new(_repoMock.Object, _uowMock.Object);
+        new(_repoMock.Object, _uowMock.Object, _hasherMock.Object);
 
     [Fact]
     public async Task Handle_NewEmail_CreatesAndReturnsUser()
@@ -20,7 +26,7 @@ public class CadastrarUsuarioHandlerTests
         _repoMock.Setup(r => r.GetByEmailAsync("novo@test.com", default))
             .ReturnsAsync((User?)null);
 
-        var cmd = new CadastrarUsuarioCommand("João", "novo@test.com", TipoUsuario.Produtor);
+        var cmd = new CadastrarUsuarioCommand("João", "novo@test.com", "senha123", TipoUsuario.Produtor);
         var result = await BuildHandler().Handle(cmd, default);
 
         Assert.Equal("João", result.Nome);
@@ -41,7 +47,7 @@ public class CadastrarUsuarioHandlerTests
         _repoMock.Setup(r => r.GetByEmailAsync("dup@test.com", default))
             .ReturnsAsync(existing);
 
-        var cmd = new CadastrarUsuarioCommand("Outro", "dup@test.com", TipoUsuario.Cliente);
+        var cmd = new CadastrarUsuarioCommand("Outro", "dup@test.com", "senha123", TipoUsuario.Cliente);
 
         await Assert.ThrowsAsync<InvalidOperationException>(
             () => BuildHandler().Handle(cmd, default));

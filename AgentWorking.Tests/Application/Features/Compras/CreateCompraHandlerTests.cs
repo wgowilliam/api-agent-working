@@ -39,10 +39,9 @@ public class CreateCompraHandlerTests
 
         var validade = DateTime.UtcNow.AddDays(30);
         var result = await handler.Handle(new CreateCompraCommand(
-            ProdutorId: "prod-1", CompradorId: "comp-1",
-            ProdutoId: produtoId, Quantidade: 50,
-            PrecoUnitario: 4.5m, PrecoVenda: 6.0m,
-            Validade: validade), default);
+            CompradorId: "comp-1", ProdutoId: produtoId,
+            Quantidade: 50, PrecoUnitario: 4.5m,
+            PrecoVenda: 6.0m, Validade: validade), default);
 
         Assert.NotNull(capturedLote);
         Assert.Equal(50, capturedLote.Quantidade);
@@ -66,7 +65,7 @@ public class CreateCompraHandlerTests
 
         await Assert.ThrowsAsync<InvalidOperationException>(() =>
             handler.Handle(new CreateCompraCommand(
-                "prod-1", "comp-1", produtoId, 50, 4.5m, 6m,
+                "comp-1", produtoId, 50, 4.5m, 6m,
                 DateTime.UtcNow.AddDays(30)), default));
     }
 }

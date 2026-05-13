@@ -3,6 +3,7 @@ using System;
 using AgentWorking.Infrastructure.Persistence;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
@@ -11,9 +12,11 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace AgentWorking.Infrastructure.Persistence.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20260513153658_AddSenhaHashToUser")]
+    partial class AddSenhaHashToUser
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -344,24 +347,6 @@ namespace AgentWorking.Infrastructure.Persistence.Migrations
                     b.HasIndex("CentroDistribuicaoId");
 
                     b.ToTable("Produtos", (string)null);
-                });
-
-            modelBuilder.Entity("AgentWorking.Domain.Entities.TokenRevogado", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uuid");
-
-                    b.Property<DateTime>("Expiry")
-                        .HasColumnType("timestamp with time zone");
-
-                    b.Property<string>("Jti")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("TokensRevogados");
                 });
 
             modelBuilder.Entity("AgentWorking.Domain.Entities.User", b =>

@@ -27,7 +27,7 @@ public class CreateCompraHandler(
         var compra = new Compra
         {
             Id = Guid.NewGuid(),
-            ProdutorId = cmd.ProdutorId,
+            ProdutorId = produto.ProdutorId,
             CompradorId = cmd.CompradorId,
             ProdutoId = cmd.ProdutoId,
             Quantidade = cmd.Quantidade,

@@ -7,7 +7,8 @@ namespace AgentWorking.Application.Features.Usuarios.Commands.CadastrarUsuario;
 
 public class CadastrarUsuarioHandler(
     IUsuarioRepository repo,
-    IUnitOfWork uow) : IRequestHandler<CadastrarUsuarioCommand, UserDto>
+    IUnitOfWork uow,
+    IPasswordHasher hasher) : IRequestHandler<CadastrarUsuarioCommand, UserDto>
 {
     public async Task<UserDto> Handle(CadastrarUsuarioCommand cmd, CancellationToken ct)
     {
@@ -20,6 +21,7 @@ public class CadastrarUsuarioHandler(
             Id = Guid.NewGuid(),
             Nome = cmd.Nome,
             Email = cmd.Email,
+            SenhaHash = hasher.Hash(cmd.Senha),
             Tipo = cmd.Tipo,
             DataCadastro = DateTime.UtcNow,
         };

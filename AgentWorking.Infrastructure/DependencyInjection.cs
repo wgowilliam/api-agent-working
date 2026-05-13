@@ -1,4 +1,5 @@
 using AgentWorking.Application.Interfaces;
+using AgentWorking.Infrastructure.BackgroundJobs;
 using AgentWorking.Infrastructure.Persistence;
 using AgentWorking.Infrastructure.Persistence.Repositories;
 using Microsoft.EntityFrameworkCore;
@@ -27,6 +28,7 @@ public static class DependencyInjection
         services.AddScoped<IVendaRepository, VendaRepository>();
         services.AddScoped<IEntregaRepository, EntregaRepository>();
         services.AddScoped<INotificacaoRepository, NotificacaoRepository>();
+        services.AddHostedService<PedidoExpirationJob>();
 
         return services;
     }

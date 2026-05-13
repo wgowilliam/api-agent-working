@@ -2,6 +2,7 @@ using AgentWorking.API.Middleware;
 using AgentWorking.Application;
 using AgentWorking.Infrastructure;
 using AgentWorking.Infrastructure.Persistence;
+using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -31,6 +32,7 @@ var app = builder.Build();
 using (var scope = app.Services.CreateScope())
 {
     var db = scope.ServiceProvider.GetRequiredService<AppDbContext>();
+    await db.Database.MigrateAsync();
     await SeedData.SeedAsync(db);
 }
 
